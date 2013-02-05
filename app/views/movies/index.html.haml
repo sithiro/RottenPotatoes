@@ -4,7 +4,7 @@
   Include: 
   - @all_ratings.each do |rating|
     = rating	
-    = check_box_tag "ratings[#{rating}]", 1, @ratings[rating]
+    = check_box_tag "ratings[#{rating}]", 1, @none_selected ? true : @ratings[rating]
   = submit_tag 'Refresh', :id => "ratings_submit"
 %table#movies
   %thead
@@ -19,6 +19,6 @@
         %td= movie.title 
         %td= movie.rating
         %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)
+        %td= link_to "More about #{movie.title}", movie_path(movie)+"?sort=#{@sort}&#{@ratings_link}"
 
 = link_to 'Add new movie', new_movie_path
